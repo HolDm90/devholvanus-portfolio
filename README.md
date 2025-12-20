@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 DevHolvanus – Portfolio & Web3 NFT Skill Badge DApp
 
-## Getting Started
+Portfolio personnel de développeur intégrant une **DApp Web3 complète** permettant de créer, uploader et minter des **NFT Skill Badges personnalisés** sur Ethereum Sepolia.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Fonctionnalités
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🌐 Portfolio
+- Présentation personnelle
+- Projets
+- Design futuriste / néon
+- Next.js App Router
+- Déployé sur Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🧩 DApp NFT Skill Badge
+- Connexion wallet (MetaMask, WalletConnect, etc.)
+- Création visuelle du badge (éditeur canvas)
+- Styles au choix
+- Génération automatique du PNG + metadata
+- Upload IPFS via Pinata
+- Mint NFT sur Ethereum Sepolia
+- Lien Etherscan
+- Accès facile à un faucet testnet
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Stack Technique
 
-To learn more about Next.js, take a look at the following resources:
+### Frontend
+- **Next.js 14+ (App Router)**
+- **React 19**
+- **TypeScript**
+- **TailwindCSS**
+- **Framer Motion**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Web3
+- **Wagmi v2**
+- **RainbowKit**
+- **Viem**
+- **Ethers.js**
+- **Ethereum Sepolia**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Infra
+- **IPFS / Pinata**
+- **Vercel**
+- **Google Cloud Web3 Faucet**
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📁 Structure du projet
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```txt
+app/
+├─ page.tsx
+├─ web3/
+│  ├─ page.tsx
+│  ├─ Web3Client.tsx
+│  ├─ components/
+│  ├─ lib/
+│  └─ api/
