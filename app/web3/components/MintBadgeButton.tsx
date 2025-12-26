@@ -1,9 +1,9 @@
+
 "use client";
 
 import { useState } from "react"; 
-import { useAccount, useWriteContract } from "wagmi";
+import { useAccount, useWriteContract, usePublicClient } from "wagmi";
 import { toast } from "sonner";
-import { publicClient } from "../lib/wagmi";
 import { resolveIpfs } from "../lib/ipfs";
 
 const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_SKILLBADGE_ADDRESS!;
@@ -11,6 +11,7 @@ const ABI = [{ inputs:[{ internalType:"string", name:"tokenURI", type:"string"}]
 
 export default function MintBadgeButton({ tokenURI }: { tokenURI: string }) {
   const { address, isConnected } = useAccount();
+  const publicClient = usePublicClient();
   const [minting, setMinting] = useState(false);
   const { writeContractAsync } = useWriteContract();
   const [txHash, setTxHash] = useState<`0x${string}` | null>(null);
@@ -19,17 +20,20 @@ export default function MintBadgeButton({ tokenURI }: { tokenURI: string }) {
 
   const handleMint = async () => {
     if (!isConnected || !address) return toast.error("Wallet non connecté");
+
+      // AJOUTEZ CETTE LIGNE pour rassurer TypeScript
+    if (!publicClient) return toast.error("Le client blockchain n'est pas prêt")
     try {
       setMinting(true); setConfirmed(false); setTxHash(null);
       const estimatedGas = await publicClient.estimateContractGas({
-        address: CONTRACT_ADDRESS,
+        address: CONTRACT_ADDRESS as `0x${string}`,
         abi: ABI,
         functionName: "mintSkillBadge",
         args: [tokenURI],
         account: address,
       });
-      const gasLimit = (estimatedGas * 110n) / 100n;
-      const hash = await writeContractAsync({ address: CONTRACT_ADDRESS, abi: ABI, functionName:"mintSkillBadge", args:[tokenURI], gas: gasLimit });
+      const gasLimit = (estimatedGas * BigInt(110)) / BigInt(100);
+      const hash = await writeContractAsync({   address: CONTRACT_ADDRESS as `0x${string}`,  abi: ABI, functionName:"mintSkillBadge", args:[tokenURI], gas: gasLimit });
       setTxHash(hash);
       toast.success("Transaction envoyée, en attente de confirmation...");
       await publicClient.waitForTransactionReceipt({ hash });

@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import BadgeEditor from "../components/BadgeEditor/BadgeEditor";
 import PinataUploader from "./PinataUploader";
 import MintBadgeButton from "./MintBadgeButton";
+import FaucetNotice from "./FaucetNotice";
 
 export default function BadgeBuilder() {
   const [exportData, setExportData] = useState<{ blob: Blob; metadata: any } | null>(null);

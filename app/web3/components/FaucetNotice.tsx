@@ -14,7 +14,7 @@ export default function FaucetNotice() {
   if (!isConnected) return null;
   if (chainId !== sepolia.id) return null;
 
-  const hasEth = balance && Number(balance.formatted) > 0.001;
+  const hasEth = false;
 
   if (hasEth) return null;
 
